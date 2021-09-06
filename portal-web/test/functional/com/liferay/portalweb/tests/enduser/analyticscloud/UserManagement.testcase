@@ -476,7 +476,53 @@ definition {
 				userEmail = "${firstUser}");
 		}
 
+		task ("Change permission for all selected users") {
+			ACSettings.changeMultipleUsersPermissions(
+				permissionType = "Administrator",
+				userEmail = "${firstUser},${secondUser}");
+		}
+
+		task ("Assert user permission") {
+			for (var users : list "${firstUser},${secondUser}") {
+				ACSettings.assertUserPermission(
+					permissionType = "Administrator",
+					userEmail = "${users}");
+			}
+		}
+	}
+
+	@description = "Automation ID: LRAC-9087 | Test Summary: Select and change an admin + member to members"
+	@priority = "3"
+	test SelectAndChangeAnAdminAndMembertoMembers {
+		var firstUser = "ac@liferay.com";
+		var secondUser = "ac2@liferay.com";
+
+		task ("Go to User Management") {
+			ACNavigation.goToSettings();
+
+			ACSettings.goToUserManagement();
+		}
+
+		task ("Invite user") {
+			for (var users : list "${firstUser},${secondUser}") {
+				ACSettings.addUser(userInvite = "${users}");
+			}
+		}
+
 		task ("Change user permission") {
+			ACSettings.changeUserRole(
+				newRole = "Administrator",
+				permissionType = "Member",
+				userEmail = "${firstUser}");
+		}
+
+		task ("Assert user permission") {
+			ACSettings.assertUserPermission(
+				permissionType = "Administrator",
+				userEmail = "${firstUser}");
+		}
+
+		task ("Change permission for all selected users") {
 			ACSettings.changeMultipleUsersPermissions(
 				permissionType = "Member",
 				userEmail = "${firstUser},${secondUser}");
@@ -489,15 +535,6 @@ definition {
 					userEmail = "${users}");
 			}
 		}
-	}
-
-	@description = "Automation ID: LRAC-9087 | Test Summary: Select and change an admin + member to members"
-	@ignore = "true"
-	@priority = "3"
-	test SelectAndChangeAnAdminAndMembertoMembers {
-
-		// TODO LRAC-9087 SelectAndChangeAnAdminAndMembertoMembers
-
 	}
 
 	@description = "Automation ID: LRAC-9082 | Test Summary: A user lost access to a given property (because the admin removed the user's access or someone deleted the property of the system)"
