@@ -26,6 +26,8 @@ definition {
 	@priority = "3"
 	test AdminCanDeleteUser {
 		task ("Create a new user and check if it is present in the table") {
+			property portal.upstream = "andre";
+
 			ACNavigation.goToSettings();
 
 			ACSettings.goToUserManagement();
