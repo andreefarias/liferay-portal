@@ -347,7 +347,7 @@ definition {
 		AssertClick(
 			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
 			value1 = "Submit for Publication");
-		
+
 		Alert.viewSuccessMessage();
 
 		UserBar.gotoDropdownItem(dropdownItem = "My Workflow Tasks");
@@ -356,7 +356,7 @@ definition {
 			workflowAssetTitle = "FrontPage",
 			workflowAssetType = "Wiki Page",
 			workflowTask = "Review");
-		
+
 		Workflow.approveTaskByActions(
 			workflowAssetTitle = "FrontPage",
 			workflowAssetType = "Wiki Page",
