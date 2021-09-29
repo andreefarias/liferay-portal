@@ -326,12 +326,43 @@ definition {
 	}
 
 	@description = "This is a test for LRQA-69553. Verify that the user can assign a Workflow to Wiki Page. "
-	@ignore = "Test Stub"
 	@priority = "3"
 	test UserCanAssignWorkflowToWikiPage {
+		Navigator.gotoPage(pageName = "Wiki Page");
 
-		// TODO LRQA-69553 UserCanAssignWorkflowToWikiPage pending implementation
+		AssertClick(
+			locator1 = "Link#EDIT",
+			value1 = "Edit");
 
+		SelectFrame.selectFrameNoLoading(
+			key_title = "Rich Text Editor",
+			locator1 = "IFrame#MODAL_ANY");
+
+		Type(
+			locator1 = "CKEditor#BODY",
+			value1 = "Wiki Page Content");
+
+		SelectFrame.selectFrameNoLoading(locator1 = "Header#H1_TITLE");
+
+		AssertClick(
+			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
+			value1 = "Submit for Publication");
+		
+		Alert.viewSuccessMessage();
+
+		UserBar.gotoDropdownItem(dropdownItem = "My Workflow Tasks");
+
+		Workflow.assignToMeTaskByActions(
+			workflowAssetTitle = "FrontPage",
+			workflowAssetType = "Wiki Page",
+			workflowTask = "Review");
+		
+		Workflow.approveTaskByActions(
+			workflowAssetTitle = "FrontPage",
+			workflowAssetType = "Wiki Page",
+			workflowTask = "Review");
+
+		Alert.viewSuccessMessage();
 	}
 
 	@description = "This is a test for LRQA-69561. Verify that the Child Page status are displayed correctly on approval. "
