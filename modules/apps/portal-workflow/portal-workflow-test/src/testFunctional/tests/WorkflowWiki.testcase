@@ -403,8 +403,6 @@ definition {
 		AssertElementPresent(
 			key_status = "Approved",
 			locator1 = "CommerceEntry#WORKFLOW_STATUS");
-				
-
 	}
 
 	@description = "This is a test for LRQA-69567. Verify that the Child Page status are displayed correctly on reject. "
