@@ -168,8 +168,6 @@ definition {
 		AssertElementNotPresent(
 			locator1 = "Button#REPLY",
 			value1 = "Reply");
-			
-
 	}
 
 	@description = "This is a test for LRQA-69701. Verify that the user can reject a thread. "
