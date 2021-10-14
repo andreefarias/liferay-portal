@@ -678,6 +678,22 @@ definition {
 		AssertVisible(locator1 = "KaleoFormsAdmin#KALEO_WORKFLOW_UNPUBLISHED_EMPTY_MESSAGE");
 	}
 
+	macro viewPermissionsAndAssertModal {
+		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Permissions");
+
+		AssertElementPresent(
+			key_title = "Permissions",
+			locator1 = "Header#H3_TITLE");
+
+		AssertElementPresent(locator1 = "WorkflowDefinition#DEFINITION_TABLE_TITLE_PERMISSIONS");
+
+		IFrame.selectPermissionsFrame();
+
+		PortletEntry.save();
+
+		Alert.viewSuccessMessage();
+	}
+
 	macro viewPreviousFieldSetPage {
 		Click(locator1 = "Pagination#FIRST_LINK");
 	}
@@ -873,22 +889,6 @@ definition {
 		AssertClick(
 			locator1 = "KaleoFormsAdminEditProcess#WORKFLOW_NAVIGATION_UNPUBLISHED_TAB",
 			value1 = "Unpublished");
-	}
-
-	macro viewPermissionsAndAssertModal {
-		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Permissions");
-		
-		AssertElementPresent(
-			key_title = "Permissions",
-			locator1 = "Header#H3_TITLE");
-
-		AssertElementPresent(locator1 = "WorkflowDefinition#DEFINITION_TABLE_TITLE_PERMISSIONS");
-
-		IFrame.selectPermissionsFrame();
-
-		PortletEntry.save();
-
-		Alert.viewSuccessMessage();
 	}
 
 }
