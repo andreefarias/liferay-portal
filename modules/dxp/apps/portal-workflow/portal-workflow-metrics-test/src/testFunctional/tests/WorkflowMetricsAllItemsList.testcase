@@ -1543,8 +1543,6 @@ definition {
 		WorkflowMetrics.viewTableSizeInTheAllItems(
 			itemTable = "Web Content Article: WebContent Title",
 			itemTableSize = "106.887px");
-
-			
 	}
 
 	@description = "LPS-98517 - Verify that a long username that exceeds 240px in the assignee dropdown option is placed in more than one line, respecting the alignment of the field"
