@@ -26,6 +26,11 @@
 	<td>//div[contains(@class,'empty-result')]//div[contains(text(),'There are no unpublished definitions.')]</td>
 	<td></td>
 </tr>
+<tr>
+	<td>PROCESS_TABLE_NAME_BY_INDEX</td>
+	<td>//tr[contains(.,'${key_kfProcessName}')]/td[${key_itemPosition}]</td>
+	<td></td>
+</tr>
 <!--WORKFLOW_MODAL-->
 <tr>
 	<td>CLOSE_BUTTON</td>
