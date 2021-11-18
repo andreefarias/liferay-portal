@@ -112,8 +112,6 @@ definition {
 			siteName = "Site Name");
 
 		Workflow.viewWorkflowStatus(status = "Ready for Publish Process");
-
-		
 	}
 
 	@priority = "4"
