@@ -198,7 +198,6 @@ definition {
 			entryTitle = "Blogs Title");
 
 		Staging.submitForPublicationPageRevision();
-
 	}
 
 	@description = "Verify that when the Approved page is edited the button Submit for Publication is displayed"
