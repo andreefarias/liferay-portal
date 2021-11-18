@@ -179,7 +179,6 @@ definition {
 		Navigator.gotoStagedSitePage(
 			pageName = "Site Page Name",
 			siteName = "Site Name");
-			
 
 		Portlet.addPG(
 			pageName = "Site Page Name",
@@ -210,7 +209,6 @@ definition {
 		Portlet.deletePG(portletName = "Blogs");
 
 		Workflow.viewWorkflowStatus(status = "Draft");
-
 	}
 
 	@description = "Verify that a Staging Area Page is Pending after it is submitted for publication"
