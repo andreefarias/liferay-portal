@@ -87,6 +87,8 @@ definition {
 		Workflow.viewWorkflowStatus(status = "Draft");
 
 		Staging.submitForPublicationPageRevision();
+
+		
 	}
 
 	@description = "Verify that, after approval, the Page status is Ready for Publish"
