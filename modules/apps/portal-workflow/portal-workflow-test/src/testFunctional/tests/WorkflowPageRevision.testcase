@@ -70,12 +70,23 @@ definition {
 	}
 
 	@description = "Verify that the Submit for Publication button is not available after the Page is submitted for publication"
-	@ignore = "Test Stub"
 	@priority = "3"
 	test ButtonNotAvailableAfterSubmitForPublication {
+		Navigator.gotoStagedSitePage(
+			pageName = "Site Page Name",
+			siteName = "Site Name");
 
-		// TODO LRQA-70876 ButtonNotAvailableAfterSubmitForPublication pending implementation
+		Portlet.addPG(
+			pageName = "Site Page Name",
+			portletName = "Blogs");
 
+		Blogs.addEntry(
+			entryContent = "Blogs Content",
+			entryTitle = "Blogs Title");
+
+		Workflow.viewWorkflowStatus(status = "Draft");
+
+		Staging.submitForPublicationPageRevision();
 	}
 
 	@description = "Verify that, after approval, the Page status is Ready for Publish"
