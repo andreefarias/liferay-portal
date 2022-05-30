@@ -188,6 +188,8 @@ definition {
 			urlAction = "http://localhost:8080",
 			whenAction = "On After Add");
 
+		ObjectAction.goToTabsOnAction(actionTab = "Basic Info");
+
 		Button.clickSave();
 
 		ObjectAdmin.assertRequiredErrorPresent();

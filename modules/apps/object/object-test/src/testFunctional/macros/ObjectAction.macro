@@ -1,0 +1,12 @@
+definition {
+
+	macro goToTabsOnAction {
+		if ("${actionTab}" == "Basic Info") {
+			Click(locator1 = "ObjectAction#TAB_BASIC_INFO");
+		}
+		else if ("${actionTab}" == "Action Builder") {
+			Click(locator1 = "ObjectAction#TAB_ACTION_BUILDER");
+		}
+	}
+
+}
