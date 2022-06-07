@@ -106,7 +106,7 @@ definition {
 
 		for (var columnName : list "${listMetaData}") {
 			ObjectCustomViews.assertColumnPresentOnDefaultSort(
-				colunmName = "${columnName}",
+				columnName = "${columnName}",
 				sortingLabel = "Ascending");
 		}
 	}
@@ -973,18 +973,18 @@ definition {
 				sortOption = "Ascending");
 		}
 
-		ObjectCustomViews.searchOnDefaultSort(colunmName = "Author");
+		ObjectCustomViews.searchOnDefaultSort(columnName = "Author");
 
 		KeyPress(
 			locator1 = "ObjectCustomViews#DEFAULT_SORT_SEARCH_BAR",
 			value1 = "\RETURN");
 
 		ObjectCustomViews.assertColumnPresentOnDefaultSort(
-			colunmName = "Author",
+			columnName = "Author",
 			sortingLabel = "Ascending");
 
 		for (var columnNotPresent : list "Creation Date,Modified Date") {
-			ObjectCustomViews.assertColumnNotPresentOnDefaultSort(colunmName = "${columnNotPresent}");
+			ObjectCustomViews.assertColumnNotPresentOnDefaultSort(columnName = "${columnNotPresent}");
 		}
 	}
 
