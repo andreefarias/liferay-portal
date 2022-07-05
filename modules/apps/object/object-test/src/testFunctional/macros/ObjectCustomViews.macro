@@ -3,7 +3,7 @@ definition {
 	macro addColumnsViaUI {
 		LexiconEntry.gotoAdd();
 
-		SelectFrame(locator1 = "ObjectCustomViews#VIEW_MODAL_ADD_COLUMNS");
+		SelectFrame(locator1 = "ObjectCustomViews#VIEW_MODAL_CONTENT");
 
 		for (var columnsOptions : list "${addColumns}") {
 			Click.clickAtNotVisible(
@@ -27,8 +27,8 @@ definition {
 		Click(locator1 = "ObjectCustomViews#SELECT_COLUMN_ON_DEFAULT_SORT");
 
 		Click(
-			key_columnOption = "${columnOption}",
-			locator1 = "ObjectCustomViews#DEFAULT_SORT_COLUMN_OPTION");
+			key_selectOption = "${columnOption}",
+			locator1 = "ObjectCustomViews#GENERIC_OPTIONS_ON_MODAL");
 
 		Click(locator1 = "ObjectCustomViews#SELECT_SORTING_ON_DEFAULT_SORT");
 
@@ -99,7 +99,7 @@ definition {
 	}
 
 	macro assertColumnVisibleOnAddColumnModal {
-		Click(locator1 = "ObjectCustomViews#VIEW_MODAL_ADD_COLUMNS");
+		Click(locator1 = "ObjectCustomViews#VIEW_MODAL_CONTENT");
 
 		AssertVisible(
 			key_columnName = "${columnOption}",
@@ -253,7 +253,7 @@ definition {
 	}
 
 	macro searchOnAddColumnModal {
-		SelectFrame(locator1 = "ObjectCustomViews#VIEW_MODAL_ADD_COLUMNS");
+		SelectFrame(locator1 = "ObjectCustomViews#VIEW_MODAL_CONTENT");
 
 		Click(locator1 = "ObjectCustomViews#ADD_COLUMNS_SEARCH_BAR");
 
@@ -403,6 +403,78 @@ definition {
 			key_columnName1 = "${columnName}",
 			key_position = "${position}",
 			locator1 = "ObjectCustomViews#VIEW_LIST_COLUMNS_BY_POSITION");
+	}
+
+	macro goToFiltersTab {
+		Click(locator1 = "ObjectCustomViews#FILTERS_TAB");
+	}
+
+	macro gotoAddNewFilter {
+		Click(locator1 = "ObjectCustomViews#ADD_BUTTON_FILTERS");
+
+		Click(locator1 = "ObjectCustomViews#VIEW_MODAL_CONTENT");
+	}
+
+	macro addNewFilterViaUI {
+		ObjectCustomViews.gotoAddNewFilter();
+
+		Click(locator1 = "ObjectCustomViews#FILTER_BY_ON_NEW_FILTER");
+
+		ObjectCustomViews.assertDefaultMetadataOnFilterBy();
+
+		Click(
+			key_selectOption = "${filterBy}",
+			locator1 = "ObjectCustomViews#GENERIC_OPTIONS_ON_MODAL");
+		
+		if (isSet(filterType)) {
+			ObjectCustomViews.assertDefaultMetadataOnFilterType();
+
+			Select(
+				locator1 = "ObjectCustomViews#FILTER_TYPE_ON_NEW_FILTER",
+				value1 = "${filterType}");
+		}
+
+		if (isSet(filterValue)) {
+			ObjectCustomViews.assertDefaultMetadataOnFilterValue();
+
+			Select(
+				locator1 = "ObjectCustomViews#FILTER_VALUE_ON_NEW_FILTER",
+				value1 = "${filterValue}");
+		}
+
+		Click(
+			key_name = "Save",
+			locator1 = "Button#GENERAL_BUTTON_MODAL_FOOTER");
+	}
+
+	macro assertDefaultMetadataOnFilterBy {
+		for (var metaData : list "Creation Date,Modified Date,Workflow Status") {
+			AssertElementPresent(
+				key_selectOption = "${metaData}",
+				locator1 = "ObjectCustomViews#GENERIC_OPTIONS_ON_MODAL");
+		}
+	}
+
+	macro assertDefaultMetadataOnFilterType {
+		for (var metaData : list "Includes,Excludes") {
+			AssertElementPresent(
+				locator1 = "ObjectCustomViews#FILTER_TYPE_ON_NEW_FILTER",
+				value1 = "${metaData}");
+		}
+	}
+
+	macro assertDefaultMetadataOnFilterValue {
+		for (var metaData : list "Approved,Denied,Draft,Expired,Inactive,Incomplete,In Recycle Bin,Pending,Scheduled") {
+			AssertElementPresent(
+				locator1 = "ObjectCustomViews#FILTER_TYPE_ON_NEW_FILTER",
+				value1 = "${metaData}");
+		}
+	}
+
+	macro assertVisibleEntriesOnFilters {
+		AssertVisible(
+			key_columnName = "${filterBy}",
+			locator1 = "ObjectCustomViews#VIEW_BUILDER_SEARCH_RESULT");
 	}
 
 }
