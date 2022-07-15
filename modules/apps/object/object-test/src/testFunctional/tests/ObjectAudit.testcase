@@ -628,7 +628,14 @@ definition {
 
 		ObjectAdmin.saveCustomObject();
 
-		Audit.openAuditAdmin();
+		Navigator.openURL();
+
+		ApplicationsMenu.gotoPortlet(
+			category = "Security",
+			panel = "Control Panel",
+			portlet = "Audit");
+
+		Refresh();
 
 		Audit.viewAuditEntries(
 			clientIP = "127.0.0.1",
