@@ -106,6 +106,8 @@ definition {
 	@description = "LPS-133365 - Verify if it's possible to map an Object field of BigDecimal type and view its entries"
 	@priority = "4"
 	test CanMapBigDecimalTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 215",
 			objectName = "CustomObject215",
@@ -163,6 +165,8 @@ definition {
 	@description = "LPS-133365 - Verify if it's possible to map an Object field of Boolean type and view its entries"
 	@priority = "4"
 	test CanMapBooleanTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 216",
 			objectName = "CustomObject216",
@@ -216,6 +220,8 @@ definition {
 	@description = "LPS-133365 - Verify if it's possible to map an Object field of Date type and view its entries"
 	@priority = "4"
 	test CanMapDateTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 217",
 			objectName = "CustomObject217",
@@ -269,6 +275,8 @@ definition {
 	@description = "LPS-133365 - Verify if it's possible to map an Object field of Double type and view its entries"
 	@priority = "4"
 	test CanMapDoubleTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 218",
 			objectName = "CustomObject218",
@@ -326,6 +334,8 @@ definition {
 	@description = "LPS-133365 - Verify if it's possible to map an Object field of Integer type and view its entries"
 	@priority = "4"
 	test CanMapIntegerTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 219",
 			objectName = "CustomObject219",
@@ -379,6 +389,8 @@ definition {
 	@description = "LPS-133365 - Verify if it's possible to map an Object field of Long type and view its entries"
 	@priority = "4"
 	test CanMapLongTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 220",
 			objectName = "CustomObject220",
@@ -420,7 +432,7 @@ definition {
 			fieldName = "Numeric",
 			fieldValue = "1234567891234567");
 
-		FormPortlet.submitSuccessfully();
+		Button.clickSubmitForPublication();
 
 		Navigator.openURL();
 
@@ -432,6 +444,8 @@ definition {
 	@description = "LPS-138495 - Verify it is possible to map a Picklist for a Select From List field and view its entries"
 	@priority = "4"
 	test CanMapPicklistTypeAndViewEntries {
+		property portal.acceptance = "andreefarias";
+
 		Picklist.addPicklistViaAPI(picklistName = "Custom Picklist");
 
 		for (var itemsName : list "1,2") {
@@ -500,6 +514,7 @@ definition {
 	@priority = "5"
 	test CanMapStringTypeAndViewEntries {
 		property portal.acceptance = "true";
+		property portal.acceptance = "andreefarias";
 
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 222",
@@ -554,6 +569,8 @@ definition {
 	@description = "LPS-137865 - Verify that it is possible to submit an entry with a Double field blank that is not required"
 	@priority = "4"
 	test CanSubmitEntryWithDoubleFieldBlank {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 223",
 			objectName = "CustomObject223",
@@ -629,6 +646,8 @@ definition {
 	@description = "LPS-139902 - Verify that entries Object entries added through forms are not deleted when form is deleted"
 	@priority = "4"
 	test EntriesAreNotDeletedWhenFormIsDeleted {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 224",
 			objectName = "CustomObject224",
@@ -686,6 +705,8 @@ definition {
 	@description = "LPS-136451 - Verify if it's possible to see the entries of a field with capitalized letters in the name"
 	@priority = "4"
 	test FieldWithCapitalizedLetters {
+		property portal.acceptance = "andreefarias";
+		
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 225",
 			objectName = "CustomObject225",

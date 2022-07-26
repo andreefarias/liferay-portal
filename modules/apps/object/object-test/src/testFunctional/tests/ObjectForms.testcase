@@ -71,6 +71,8 @@ definition {
 	@description = "LPS-139464 - Verify that it is possible to delete a form mapped to an object after adding entries on it"
 	@priority = "4"
 	test CanDeleteFormMappedToObject {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 208",
 			objectName = "CustomObject208",
@@ -124,6 +126,8 @@ definition {
 	@description = "LPS-143064 - Verify that, when using objects as storage type, the user must be able to map to this field type to Rich Text Field and view its entries"
 	@priority = "4"
 	test CanMapAndViewEntriesForRichTextField {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 151597",
 			objectName = "CustomObject151597",
@@ -173,6 +177,8 @@ definition {
 	@description = "LPS-142659 - Verify if it's possible to map an Object field of Clob type and view its entries (Multiple Lines)"
 	@priority = "4"
 	test CanMapClobTypeAndViewEntriesMultipleLines {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 209",
 			objectName = "CustomObject209",
@@ -222,6 +228,8 @@ definition {
 	@description = "LPS-142659 - Verify if it's possible to map an Object field of Clob type and view its entries (Single Line)"
 	@priority = "4"
 	test CanMapClobTypeAndViewEntriesSingleLine {
+		property portal.acceptance = "andreefarias";
+		
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 210",
 			objectName = "CustomObject210",
