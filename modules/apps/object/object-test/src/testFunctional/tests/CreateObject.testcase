@@ -2149,6 +2149,8 @@ definition {
 	@description = "LPS-139005 - Verify that is not possible to submit entries in a form with an Object that was inactivated"
 	@priority = "4"
 	test CannotSubmitEntriesInFormAfterObjectInactivated {
+		property portal.acceptance = "andreefarias";
+
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 59",
 			objectName = "CustomObject59",
@@ -3153,6 +3155,8 @@ definition {
 	@description = "LPS-139005 - Verify that is possible to submit entries in a form with an Object that was reactivated"
 	@priority = "4"
 	test CanSubmitEntriesOnFormWhenReactivated {
+		property portal.acceptance = "andreefarias";
+		
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 85",
 			objectName = "CustomObject85",
@@ -8593,6 +8597,8 @@ definition {
 	@description = "LPS-135649 - Verify that the workflow is triggered when submitting an entry through Forms"
 	@priority = "4"
 	test WorkflowTriggeredWhenSubmitingEntryThroughForms {
+		property portal.acceptance = "andreefarias";
+		
 		ObjectAdmin.addObjectViaAPI(
 			labelName = "Custom Object 178",
 			objectName = "CustomObject178",
