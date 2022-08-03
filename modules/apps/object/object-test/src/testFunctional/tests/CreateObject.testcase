@@ -2662,6 +2662,12 @@ definition {
 
 			CreateObject.activeToogleAccountRestriction();
 
+			CreateObject.saveObject();
+
+			Alert.viewErrorMessage(errorMessage = "Error:If activated, the account restriction field must be selected.");
+
+			CreateObject.activeToogleAccountRestriction();
+
 			CreateObject.selectAccountRestrictedField(accountRestrictedField = "RelationshipAccount");
 
 			Button.clickPublish();
