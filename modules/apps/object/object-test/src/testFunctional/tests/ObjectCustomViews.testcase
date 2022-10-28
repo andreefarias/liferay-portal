@@ -871,6 +871,128 @@ definition {
 		}
 	}
 
+	@description = "LPS-144957 - Verify that it's possible to filter entries"
+	@priority = "4"
+	test CanFilterEntries {
+		task ("Given a Custom Object with a Custom Text Field and two entries (approved and pending)") {
+			ObjectAdmin.addObjectViaAPI(
+				labelName = "Custom Object 156806",
+				objectName = "CustomObject156806",
+				pluralLabelName = "Custom Objects 156806");
+
+			ObjectAdmin.addObjectFieldViaAPI(
+				fieldBusinessType = "Text",
+				fieldLabelName = "Custom Field",
+				fieldName = "customField",
+				fieldType = "String",
+				isRequired = "false",
+				objectName = "CustomObject156806");
+
+			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject156806");
+
+			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
+				fieldName = "customField",
+				objectName = "CustomObject156806",
+				value = "Entry Approved");
+
+			ObjectAdmin.openWorkflowProcessBuilderConfiguration();
+
+			Workflow.configureWorkflow(
+				workflowDefinition = "Single Approver",
+				workflowResourceValue = "Custom Object 156806");
+
+			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
+				fieldName = "customField",
+				objectName = "CustomObject156806",
+				value = "Entry Pending");
+		}
+
+		task ("When add Custom View with filters (Create Date, Modified Date, and Status)") {
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectCustomObject(label = "Custom Object 156806");
+
+			ObjectCustomViews.goToViewsTab();
+
+			ObjectCustomViews.addObjectViewViaUI(viewName = "Custom Views");
+
+			ObjectCustomViews.goToViewsDetails(label = "Custom Views");
+
+			ObjectCustomViews.markViewAsDefault();
+
+			ObjectCustomViews.goToViewsBuilderTab();
+
+			var listMetaData = "Custom Field,Create Date,Modified Date,Status";
+
+			ObjectCustomViews.addColumnsViaUI(addColumns = "${listMetaData}");
+
+			ObjectCustomViews.goToFiltersTab();
+
+			ObjectCustomViews.addNewFilterViaUI(filterBy = "Create Date");
+
+			ObjectCustomViews.addNewFilterViaUI(filterBy = "Modified Date");
+
+			ObjectCustomViews.addNewFilterViaUI(
+				filterBy = "Status",
+				filterType = "Includes",
+				filterValue = "Approved,Denied,Draft,Expired,Inactive,Incomplete,In Recycle Bin,Scheduled");
+
+			Button.clickSave();
+		}
+
+		task ("Then assert filter Status is working") {
+			ObjectAdmin.goToCustomObject(objectName = "CustomObject156806");
+
+			AssertElementPresent(
+				key_filter = "Approved, Denied, Draft, Expired, Inactive, Incomplete, In Recycle Bin, Scheduled",
+				locator1 = "ObjectCustomViews#LABEL_SECTION_FILTER_ENTRY");
+
+			ObjectPortlet.viewEntry(entry = "Entry Approved");
+
+			ObjectPortlet.assertEntryNotPresent(entry = "Entry Pending");
+
+			Click(
+				key_filter = "Approved, Denied, Draft, Expired, Inactive, Incomplete, In Recycle Bin, Scheduled",
+				locator1 = "ObjectCustomViews#LABEL_SECTION_FILTER_ENTRY");
+
+			Check.checkNotVisible(locator1 = "ObjectCustomViews#TOGGLE_SWITCH_EXCLUDE_STATUS");
+
+			Button.click(button = "Edit Filter");
+
+			ObjectPortlet.viewEntry(entry = "Entry Pending");
+
+			ObjectPortlet.assertEntryNotPresent(entry = "Entry Approved");
+		}
+
+		task ("Then assert filter Create Date is working") {
+			ObjectCustomViews.resetFiltersOnEntries();
+
+			ObjectCustomViews.clickOnFilterOnEntries();
+
+			ObjectCustomViews.defineDateOnFilter(
+				filterName = "Create Date",
+				fromDate = "01/01/2022");
+
+			ObjectPortlet.viewEntry(entry = "Entry Approved");
+
+			ObjectPortlet.viewEntry(entry = "Entry Pending");
+		}
+
+		task ("Then assert filter Modified Date is working") {
+			ObjectCustomViews.resetFiltersOnEntries();
+
+			ObjectCustomViews.clickOnFilterOnEntries();
+
+			ObjectCustomViews.defineDateOnFilter(
+				filterName = "Modified Date",
+				fromDate = "01/01/2022");
+
+			ObjectPortlet.viewEntry(entry = "Entry Approved");
+
+			ObjectPortlet.viewEntry(entry = "Entry Pending");
+		}
+	}
+
 	@description = "LPS-144472 - Verify it is not is possible to create a Default Sort when there isn't column"
 	@priority = "4"
 	test CannotCreateDefaultSortWhenNoColumn {
