@@ -24,6 +24,8 @@ definition {
 	@description = "LPS-165850 - Verify it's possible to add a new entry in the related object without leaving the current context (OneToMany)"
 	@priority = "5"
 	test CanAddEntryOnRelationshipTabFor1toM {
+		property portal.acceptance = "true";
+
 		task ("Given a related object with Custom Layout and Relationship tab (One to Many)") {
 			ObjectAdmin.addObjectViaAPI(
 				labelName = "Custom Object 171590",
@@ -79,7 +81,7 @@ definition {
 				relationshipsLabelName = "Relationship",
 				tabName = "Relationship Tab");
 
-			Button.clickSave();
+			PortletEntry.save();
 		}
 
 		task ("When add the entry") {
@@ -98,13 +100,9 @@ definition {
 		}
 
 		task ("Then the user can add an entry on the relationship tab") {
-			AssertElementPresent(
-				key_tabName = "Field Tab",
-				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
-
-			AssertElementPresent(
-				key_tabName = "Relationship Tab",
-				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+			for (var tabNames : list "Field Tab,Relationship Tab") {
+				ObjectCustomLayouts.assertTabNames(tabName = "${tabNames}");
+			}
 
 			AssertElementPresent(
 				key_labelName = "Custom Field",
@@ -114,9 +112,7 @@ definition {
 
 			WaitForPageLoad();
 
-			AssertElementPresent(
-				key_fieldLabel = "New entry related",
-				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+			ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(presentLabel = "New entry related");
 
 			ObjectAdmin.goToCustomObject(objectName = "CustomObject171590");
 
@@ -128,6 +124,8 @@ definition {
 	@ignore = "true"
 	@priority = "5"
 	test CanAddEntryOnRelationshipTabForMtoM {
+		property portal.acceptance = "true";
+		
 		task ("Given a related object with Custom Layout and Relationship tab (Many to Many)") {
 			ObjectAdmin.addObjectViaAPI(
 				labelName = "Custom Object 171597",
@@ -185,7 +183,7 @@ definition {
 					tabName = "Relationship Tab ${letter}");
 			}
 
-			Button.clickSave();
+			PortletEntry.save();
 		}
 
 		task ("When add the entry") {
@@ -217,9 +215,7 @@ definition {
 			}
 
 			for (var letter : list "A,B,C") {
-				AssertElementPresent(
-					key_fieldLabel = "Entry Test ${letter}",
-					locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+				ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(presentLabel = "Entry Test ${letter}");
 			}
 
 			ObjectAdmin.goToCustomObject(objectName = "CustomObject171597");
@@ -230,9 +226,7 @@ definition {
 				key_tabName = "Relationship Tab Child",
 				locator1 = "ObjectAdmin#ENTRY_RELATIONSHIP_TAB");
 
-			AssertElementPresent(
-				key_fieldLabel = "Entry Test A",
-				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+			ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(presentLabel = "Entry Test A");
 
 			ObjectAdmin.goToCustomObject(objectName = "CustomObject171597");
 
@@ -242,9 +236,116 @@ definition {
 				key_tabName = "Relationship Tab Child",
 				locator1 = "ObjectAdmin#ENTRY_RELATIONSHIP_TAB");
 
+			ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(presentLabel = "Entry Test A");
+		}
+	}
+
+	@description = "Verify it's possible to cancel a new entry"
+	@priority = "3"
+	test CanCancelNewEntryOnRelationshipTab {
+		task ("Given a related object with Custom Layout and Relationship tab") {
+			ObjectAdmin.addObjectViaAPI(
+				labelName = "Custom Object 171629",
+				objectName = "CustomObject171629",
+				pluralLabelName = "Custom Objects 171629");
+
+			ObjectAdmin.addObjectFieldViaAPI(
+				fieldBusinessType = "Text",
+				fieldLabelName = "Custom Field",
+				fieldName = "customField",
+				fieldType = "String",
+				isRequired = "false",
+				objectName = "CustomObject171629");
+
+			ObjectAdmin.addObjectRelationshipViaAPI(
+				objectName_1 = "CustomObject171629",
+				objectName_2 = "CustomObject171629",
+				relationshipLabel = "Relationship",
+				relationshipName = "relationship",
+				relationshipType = "oneToMany");
+
+			ObjectAdmin.addObjectLayoutViaAPI(
+				layoutName = "Custom Layout",
+				objectName = "CustomObject171629");
+
+			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject171629");
+
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectCustomObject(label = "Custom Object 171629");
+
+			ObjectAdmin.goToLayoutsTab();
+
+			ObjectAdmin.selectSpecificKebabMenuOption(
+				kebabOption = "View",
+				objectLabel = "Custom Layout");
+
+			ObjectAdmin.markLayoutAsDefault();
+
+			ObjectAdmin.goToLayoutTabOnLayouts();
+
+			ObjectAdmin.addTabFieldsOnLayout(
+				blockName = "Block 1",
+				columnsNumber = "1",
+				fieldList = "Custom Field",
+				tabName = "Field Tab");
+
+			ObjectAdmin.addTabRelationshipsOnLayout(
+				relationshipsLabelName = "Relationship",
+				tabName = "Relationship Tab");
+
+			Button.clickSave();
+
+			ObjectAdmin.addObjectSingleFieldEntryViaAPI(
+				fieldName = "customField",
+				objectName = "CustomObject171629",
+				value = "Entry Test");
+		}
+
+		task ("When cancel the new entry on the Relationship tab") {
+			ObjectAdmin.goToCustomObject(objectName = "CustomObject171629");
+
+			ObjectPortlet.viewEntryDetails(entry = "Entry Test");
+
+			ObjectAdmin.gotoRelationshipsTab();
+
+			LexiconEntry.gotoAdd();
+
+			Click(
+				key_kebabOption = "Create New",
+				locator1 = "ObjectAdmin#KEBAB_MENU_OPTION");
+
+			Button.clickCancel();
+		}
+
+		task ("Then go to back for layout on the Relationship tab") {
 			AssertElementPresent(
-				key_fieldLabel = "Entry Test A",
-				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+				key_tabName = "Field Tab",
+				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+
+			AssertElementPresent(
+				key_tabName = "Relationship Tab",
+				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+
+			ObjectAdmin.assertNoResultsWereFound();
+
+			LexiconEntry.gotoAdd();
+
+			Click(
+				key_kebabOption = "Select Existing One",
+				locator1 = "ObjectAdmin#KEBAB_MENU_OPTION");
+
+			Click(locator1 = "Modal#CLOSE_BUTTON");
+
+			AssertElementPresent(
+				key_tabName = "Field Tab",
+				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+
+			AssertElementPresent(
+				key_tabName = "Relationship Tab",
+				locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
+
+			ObjectAdmin.assertNoResultsWereFound();
 		}
 	}
 
@@ -432,7 +533,7 @@ definition {
 				relationshipsLabelName = "Relationship",
 				tabName = "Relationship Tab");
 
-			Button.clickSave();
+			PortletEntry.save();
 		}
 
 		task ("When add the entry") {
@@ -453,17 +554,13 @@ definition {
 
 			ObjectCustomLayouts.addEntryOnRelationshipTab(selectEntry = "Entry Test B");
 
-			AssertElementPresent(
-				key_fieldLabel = "Entry Test B",
-				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+			ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(presentLabel = "Entry Test B");
 
 			ObjectAdmin.selectSpecificKebabMenuOption(
 				kebabOption = "Delete",
 				objectLabel = "Entry Test B");
 
-			AssertElementNotPresent(
-				key_fieldLabel = "Entry Test B",
-				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+			ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(notPresentLabel = "Entry Test B");
 		}
 	}
 
@@ -673,7 +770,7 @@ definition {
 				relationshipsLabelName = "Relationship",
 				tabName = "Relationship Tab");
 
-			Button.clickSave();
+			PortletEntry.save();
 		}
 
 		task ("When add many entries") {
@@ -710,9 +807,7 @@ definition {
 				key_titleFieldName = "Entry Test F",
 				locator1 = "CreateObject#SELECT_ENTRY_IN_RELATIONSHIP_TAB");
 
-			AssertElementPresent(
-				key_fieldLabel = "Entry Test F",
-				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+			ObjectCustomLayouts.assertFieldLabelOnRelationshipTab(presentLabel = "Entry Test F");
 		}
 	}
 

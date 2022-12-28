@@ -12,7 +12,7 @@ definition {
 				locator1 = "ObjectPortlet#ADD_OBJECT_ENTRY",
 				value1 = "${newEntry}");
 
-			Button.clickSave();
+			PortletEntry.save();
 		}
 
 		if (isSet(selectEntry)) {
@@ -30,6 +30,26 @@ definition {
 		WaitForSPARefresh();
 
 		WaitForPageLoad();
+	}
+
+	macro assertFieldLabelOnRelationshipTab {
+		if (isSet(presentLabel)) {
+			AssertElementPresent(
+				key_fieldLabel = "${presentLabel}",
+				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+		}
+
+		if (isSet(notPresentLabel)) {
+			AssertElementNotPresent(
+				key_fieldLabel = "${notPresentLabel}",
+				locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
+		}
+	}
+
+	macro assertTabNames {
+		AssertElementPresent(
+			key_tabName = "${tabName}",
+			locator1 = "ObjectAdmin#ANY_TAB_ON_ENTRY");
 	}
 
 }
