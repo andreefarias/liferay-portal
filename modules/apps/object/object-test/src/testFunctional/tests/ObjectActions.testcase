@@ -106,18 +106,43 @@ definition {
 		}
 	}
 
-	@description = "LPS-180070 - Verify creating a Commerce Product entry triggers an action to add a user"
+	@description = "LPS-181943 - Verify deleting a Commerce Product entry triggers an action to add a Commerce Product Group entry"
 	@priority = 5
-	test CanAddUserAfterCreatingCommerceProductEntry {
+	test CanAddCommerceProductGroupEntryAfterDeletingCommerceProductEntry {
 		property portal.acceptance = "true";
 
-		task ("Given a Commerce Product object") {
+		task ("Given a minium site and Commerce Product object") {
+			CommerceAccelerators.initializeNewSiteViaAccelerator(siteName = "Minium");
+
+			ApplicationsMenu.gotoSite(site = "Minium");
+
+			ApplicationsMenu.gotoPortlet(
+				category = "Product Management",
+				panel = "Commerce",
+				portlet = "Products");
+
+			CPCommerceCatalog.newProductsEntry(
+				productCatalog = "Minium",
+				productName = "Simple T-Shirt",
+				productType = "Simple");
+
+			ApplicationsMenu.gotoSite(site = "Minium");
+
+			CommerceAcceleratorsInitializer.viewMiniumCardName(productName = "Simple T-Shirt");
+
+			CommerceAcceleratorsInitializer.gotoMiniumProductDetailsPage(productName = "Simple T-Shirt");
+
+			FrontStore.assertProductDetails(
+				productFullDescription = "Simple T-Shirt Full Description",
+				productName = "Simple T-Shirt",
+				productShortDescription = "Simple T-Shirt Short Description");
+		}
+
+		task ("And given an action to add a Commerce Product Group entry after deleting a Commerce Product entry") {
 			ObjectAdmin.openObjectAdmin();
 
 			ObjectPortlet.selectSystemObject(label = "Commerce Product");
-		}
 
-		task ("And given an action to add a new User after creating a Commerce Product entry") {
 			ObjectAdmin.goToActionsTab();
 
 			ObjectAdmin.addObjectActionViaUI(
@@ -125,31 +150,39 @@ definition {
 				actionName = "customAction",
 				active = "true",
 				inputMethod = "true",
-				inputValue = "newusertest,newuser@test.com,newUserTest,newUserTest",
-				objectLabel = "User",
+				inputValue = "Value Test",
+				objectLabel = "Commerce Product Group",
 				thenAction = "Add an Object Entry",
-				whenAction = "On After Add");
+				whenAction = "On After Delete");
 		}
 
-		task ("When the user creates a Commerce Product entry") {
-			ApplicationsMenu.gotoPortlet(
+		task ("When the user deletes a Commerce Product entry") {
+			CommerceNavigator.gotoPortlet(
 				category = "Product Management",
-				panel = "Commerce",
 				portlet = "Products");
 
-			CPCommerceCatalog.newProductsEntry(
-				productCatalog = "Master",
-				productName = "Simple T-Shirt",
-				productType = "Simple");
+			CommerceProducts.searchProduct(search = "Simple T-Shirt");
+
+			CommerceProducts.deleteProductsEntry(key_value = "Simple T-Shirt");
 		}
 
-		task ("Then the action is triggered and a user is added") {
-			ApplicationsMenu.gotoPortlet(
-				category = "Users",
-				panel = "Control Panel",
-				portlet = "Users and Organizations");
+		task ("Then the action is triggered and a Commerce Product Group entry is added") {
+			CommerceNavigator.gotoPortlet(
+				category = "Pricing",
+				portlet = "Product Groups");
 
-			LexiconEntry.viewEntryName(rowEntry = "newusertest");
+			LexiconEntry.viewEntryName(rowEntry = "Value Test");
+
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectSystemObject(label = "Commerce Product");
+
+			ObjectAdmin.goToActionsTab();
+
+			ObjectAdmin.assertObjectActions(
+				actionActive = "Yes",
+				actionLabel = "Custom Action",
+				status = "Success");
 		}
 	}
 
@@ -3708,6 +3741,95 @@ definition {
 			AssertElementNotPresent(
 				key_title = "Condition",
 				locator1 = "ObjectAction#SECTION_TITLE");
+		}
+	}
+
+		@description = "LPS-181944 - Verify updating a Commerce Product entry triggers an action to update the Commerce Product entry"
+	@priority = 5
+	test CanUpdateCommerceProductEntryAfterUpdatingCommerceProductEntry {
+		property portal.acceptance = "true";
+
+		task ("Given a minium site and Commerce Product") {
+			CommerceAccelerators.initializeNewSiteViaAccelerator(siteName = "Minium");
+
+			ApplicationsMenu.gotoSite(site = "Minium");
+
+			ApplicationsMenu.gotoPortlet(
+				category = "Product Management",
+				panel = "Commerce",
+				portlet = "Products");
+
+			CPCommerceCatalog.newProductsEntry(
+				productCatalog = "Minium",
+				productName = "Simple T-Shirt",
+				productType = "Simple");
+
+			ApplicationsMenu.gotoSite(site = "Minium");
+
+			CommerceAcceleratorsInitializer.viewMiniumCardName(productName = "Simple T-Shirt");
+
+			CommerceAcceleratorsInitializer.gotoMiniumProductDetailsPage(productName = "Simple T-Shirt");
+
+			FrontStore.assertProductDetails(
+				productFullDescription = "Simple T-Shirt Full Description",
+				productName = "Simple T-Shirt",
+				productShortDescription = "Simple T-Shirt Short Description");
+		}
+
+		task ("And given an action to update a Commerce Product entry after updating a Commerce Product entry") {
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectSystemObject(label = "Commerce Product");
+
+			ObjectAdmin.goToActionsTab();
+
+			ObjectAdmin.addObjectActionViaUI(
+				actionLabel = "Custom Action",
+				actionName = "customAction",
+				active = "true",
+				fieldName = "Short Description",
+				inputMethod = "true",
+				inputValue = "Updated Description",
+				objectLabel = "Commerce Product",
+				thenAction = "Update an Object Entry",
+				whenAction = "On After Update");
+		}
+
+		task ("When the user updates any Commerce Product entry") {
+			CommerceNavigator.gotoPortlet(
+				category = "Product Management",
+				portlet = "Products");
+
+			CommerceProducts.searchProduct(search = "Simple T-Shirt");
+
+			CommerceNavigator.gotoEntry(entryName = "Simple T-Shirt");
+
+			CommerceEntry.addProductDescription(
+				productFullDescription = "This is a New Full Description",
+				productShortDescription = "This is a New Short Description",
+				publishProduct = "true");
+		}
+
+		task ("Then the action is triggered and the Commerce Product entry changed is updated") {
+			ApplicationsMenu.gotoSite(site = "Minium");
+
+			CommerceAcceleratorsInitializer.gotoMiniumProductDetailsPage(productName = "Simple T-Shirt");
+
+			FrontStore.assertProductDetails(
+				productFullDescription = "Simple T-Shirt Full Description",
+				productName = "Simple T-Shirt",
+				productShortDescription = "Updated Description");
+
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectSystemObject(label = "Commerce Product");
+
+			ObjectAdmin.goToActionsTab();
+
+			ObjectAdmin.assertObjectActions(
+				actionActive = "Yes",
+				actionLabel = "Custom Action",
+				status = "Success");
 		}
 	}
 
