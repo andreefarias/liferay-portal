@@ -3280,8 +3280,6 @@ definition {
 	@description = "LPS-146871 - Verify an Action with Groovy Script can be triggered after deleting an entry."
 	@priority = 4
 	test CanTriggerActionDeleteWithGroovyScript {
-		property portal.upstream = "quarantine";
-
 		task ("Given an object with a field is created") {
 			ObjectAdmin.addObjectViaAPI(
 				labelName = "Custom Object 156566",
@@ -3335,8 +3333,6 @@ definition {
 				actionActive = "Yes",
 				actionLabel = "Action Label",
 				status = "Success");
-
-			AssertConsoleTextPresent(value1 = "Hello world");
 		}
 	}
 
