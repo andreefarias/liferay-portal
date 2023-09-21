@@ -100,6 +100,66 @@
 					"state": false,
 					"system": true,
 					"type": "String"
+				},
+				{
+					"DBType": "String",
+					"businessType": "Picklist",
+					"defaultValue": "opt2",
+					"externalReferenceCode": "PICKLIST_SYSTEM",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Picklist System"
+					},
+					"listTypeDefinitionExternalReferenceCode": "L_PICKLIST",
+					"localized": false,
+					"name": "picklistSystem",
+					"objectFieldSettings": [
+						{
+							"name": "defaultValueType",
+							"value": "inputAsValue"
+						},
+						{
+							"name": "defaultValue",
+							"value": "opt2"
+						}
+					],
+					"readOnly": "false",
+					"readOnlyConditionExpression": "",
+					"required": true,
+					"state": true,
+					"system": true
+				},
+				{
+					"DBType": "String",
+					"businessType": "Picklist",
+					"defaultValue": "opt1",
+					"externalReferenceCode": "PICKLIST_CUSTOM",
+					"indexed": true,
+					"indexedAsKeyword": false,
+					"indexedLanguageId": "en_US",
+					"label": {
+						"en_US": "Picklist Custom"
+					},
+					"listTypeDefinitionExternalReferenceCode": "L_PICKLIST",
+					"localized": false,
+					"name": "picklistCustom",
+					"objectFieldSettings": [
+						{
+							"name": "defaultValueType",
+							"value": "inputAsValue"
+						},
+						{
+							"name": "defaultValue",
+							"value": "opt2"
+						}
+					],
+					"readOnly": "false",
+					"readOnlyConditionExpression": "",
+					"required": true,
+					"state": true,
+					"system": false
 				}
 			],
 			"objectLayouts": [
@@ -145,6 +205,26 @@
 											"objectLayoutColumns": [
 												{
 													"objectFieldName": "description",
+													"priority": 0,
+													"size": 12
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "picklistSystem",
+													"priority": 0,
+													"size": 12
+												}
+											],
+											"priority": 0
+										},
+										{
+											"objectLayoutColumns": [
+												{
+													"objectFieldName": "picklistCustom",
 													"priority": 0,
 													"size": 12
 												}
