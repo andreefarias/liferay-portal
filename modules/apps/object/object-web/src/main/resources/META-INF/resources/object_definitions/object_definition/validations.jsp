@@ -37,12 +37,15 @@ renderResponse.setTitle(objectDefinition.getLabel(locale, true));
 			).put(
 				"objectDefinitionExternalReferenceCode", objectDefinition.getExternalReferenceCode()
 			).put(
+				"objectValidationRuleEngines", objectDefinitionsValidationsDisplayContext.getObjectValidationRuleEngines()
+			).put(
 				"style", "fluid"
 			).put(
 				"url", objectDefinitionsValidationsDisplayContext.getEditObjectValidationURL()
 			).build()
 		%>'
 	/>
+<<<<<<< HEAD
 </div>
 
 <div id="<portlet:namespace />AddObjectValidation">
@@ -68,4 +71,6 @@ renderResponse.setTitle(objectDefinition.getLabel(locale, true));
 	<react:component
 		module="js/components/ModalDeletionNotAllowed"
 	/>
+=======
+>>>>>>> 06cfb7e (LPS-198585 Refactor ModalAddObjectValidation to use the useForm hook)
 </div>
