@@ -149,19 +149,22 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Picklist",
 				fieldPicklist = "Status",
-				fieldType = "Picklist");
+				idFieldType = "Picklist",
+				selectType= "Select an option");
 
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Picklist State Manager",
 				fieldPicklist = "Status",
-				fieldType = "Picklist",
+				idFieldType = "Picklist",
 				itemName = "open",
-				markAsState = "true");
+				markAsState = "true",
+				selectType= "Select an option");
 
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Multiselect Picklist",
 				fieldPicklist = "Status",
-				fieldType = "Multiselect Picklist");
+				idFieldType = "MultiselectPicklist",
+				selectType= "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject187390");
 		}
@@ -394,9 +397,10 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				field = "ID",
 				fieldLabel = "Custom Aggregation",
-				fieldType = "Aggregation",
-				function = "Max",
-				relationship = "Relationship");
+				idFieldType = "Aggregation",
+				function = "MAX",
+				relationship = "Relationship",
+				selectType= "Select an option");
 		}
 
 		task ("Then: The custom object with a self-relationship and Aggregation field can be exported") {

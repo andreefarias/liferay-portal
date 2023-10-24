@@ -18,8 +18,8 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td>FIELD_TYPE_DESCRIPTION</td>
-		<td>//div[text() = "${key_type}"]/..//span[@class = 'text-small']</td>
+		<td>CLAY_FIELD_TYPE_DESCRIPTION</td>
+		<td>//*[contains(@id, 'clay')]//button[text() = "${key_type}"]</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -123,18 +123,18 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td>TYPE_FIELD</td>
-		<td>//input[(@placeholder='Choose an Option' or @placeholder='Escolha uma Opção')]</td>
+		<td>CLAY_GENERIC_SELECTION</td>
+		<td>//*[contains(@class, 'form-group')]//button[contains(.,'${key_selectType}')]</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>TYPE_FIELD_DISABLED</td>
-		<td>//input[@placeholder='Choose an Option' and @disabled]</td>
+		<td>//input[@name='name' and (@disabled)]</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>TYPE_OPTION</td>
-		<td>//button[@class='dropdown-item']//div[(text()="${key_fieldType}")]</td>
+		<td>CLAY_GENERIC_OPTION</td>
+		<td>//*[contains(@id, 'clay')]//button[@class='dropdown-item' and @id='${key_idFieldType}' or @class='dropdown-item hover' and @id='${key_idFieldType}']</td>
 		<td></td>
 	</tr>
 	<tr>

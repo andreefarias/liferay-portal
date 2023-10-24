@@ -130,7 +130,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Custom Picklist Field",
 				fieldPicklist = "Status",
-				fieldType = "Picklist");
+				idFieldType = "Picklist",
+				selectType= "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject175200");
 		}
@@ -146,8 +147,10 @@ definition {
 				inputMethod = "true",
 				inputValue = "Object entry added",
 				objectLabel = "Custom Object 175200",
-				thenAction = "Add an Object Entry",
-				whenAction = "On After Update");
+				thenAction = "AddanObjectEntry",
+				whenAction = "OnAfterUpdate",
+				selectTrigger = "Choose a Trigger",
+				selectAction = "Choose an Action");
 		}
 
 		task ("When the entry is added with picklist value Open") {

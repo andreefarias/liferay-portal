@@ -388,7 +388,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				acceptUniqueValuesOnly = "true",
 				fieldLabel = "Email Address",
-				fieldType = "Text");
+				idFieldType = "Text",
+				selectType= "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "PurchaseOrder");
 

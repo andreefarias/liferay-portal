@@ -37,7 +37,8 @@ definition {
 
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field",
-			fieldType = "Boolean");
+			idFieldType = "Boolean",
+			selectType= "Select an option");
 
 		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject314");
 
@@ -118,7 +119,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Custom Picklist",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType= "Select an option");
 
 		Navigator.openURL();
 
@@ -727,7 +729,8 @@ definition {
 
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field",
-			fieldType = "Text");
+			idFieldType = "Text",
+			selectType= "Select an option");
 
 		ObjectAdmin.openObjectAdmin();
 
@@ -735,7 +738,9 @@ definition {
 
 		CreateObject.selectPanelCategoryKey(panelCategoryKey = "Control Panel > Object");
 
-		CreateObject.selectTitleField(fieldLabel = "Field");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Field");
 
 		CreateObject.saveObject();
 

@@ -65,7 +65,8 @@ definition {
 
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Custom Field",
-				fieldType = "Text");
+				idFieldType = "Text",
+				selectType= "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "ProxyCustomObject");
 		}

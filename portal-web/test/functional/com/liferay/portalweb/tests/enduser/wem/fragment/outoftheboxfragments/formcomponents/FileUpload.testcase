@@ -431,9 +431,10 @@ definition {
 
 				ObjectAdmin.addObjectFieldViaUI(
 					enableShowFiles = "true",
-					fieldAttachment = "Upload Directly from the User's Computer",
+					fieldAttachment = "userComputer",
 					fieldLabel = "Custom Attachment From Computer",
-					fieldType = "Attachment");
+					idFieldType = "Attachment",
+					selectType= "Select an option");
 			}
 
 			task ("Change the Maximum File Size to 2 MB") {

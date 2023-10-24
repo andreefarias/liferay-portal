@@ -99,7 +99,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Picklist Test",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType= "Select an option");
 
 		Navigator.openURL();
 

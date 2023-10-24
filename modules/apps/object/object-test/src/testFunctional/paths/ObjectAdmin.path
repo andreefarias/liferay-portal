@@ -422,7 +422,7 @@
 	</tr>
 	<tr>
 		<td>VIEW_OBJECT_FIELD_TYPE</td>
-		<td>//div[(@class = 'dnd-td') and contains (.,'${key_fieldType}')]</td>
+		<td>//div[(@class = 'dnd-td') and contains (.,'${key_idFieldType}')]</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -577,7 +577,7 @@
 	</tr>
 	<tr>
 		<td>SELECT_DROPDOWN_ITEM_DEFAULT_VALUE</td>
-		<td>//*[contains(@class,'list-unstyled')]//button[contains(@class,'dropdown-item')]//..//div[contains(text(),'${key_dropdownItem}')]</td>
+		<td>//*[contains(@class,'list-unstyled')]//button[contains(@class,'dropdown-item')]//..//div[(text()='${key_dropdownItem}')]</td>
 		<td></td>
 	</tr>
 	<tr>

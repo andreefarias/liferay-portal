@@ -261,11 +261,13 @@ definition {
 	}
 
 	macro selectScope {
-		Click(locator1 = "CreateObject#SCOPE");
+		Click(
+			key_selectType = ${selectType},
+			locator1 = "ObjectField#CLAY_GENERIC_SELECTION");
 
 		Click(
-			key_menuItem = ${fieldLabel},
-			locator1 = "MenuItem#ANY_MENU_ITEM");
+			key_idFieldType = ${fieldLabel},
+			locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 	}
 
 	macro selectTitleField {

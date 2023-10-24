@@ -1130,7 +1130,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Custom Picklist",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType= "Select an option");
 
 		Navigator.openURL();
 
@@ -1671,7 +1672,9 @@ definition {
 
 		ObjectPortlet.selectCustomObject(label = "Custom Object 264");
 
-		CreateObject.selectTitleField(fieldLabel = "Field");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Field");
 
 		CreateObject.saveObject();
 
@@ -2090,7 +2093,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Custom Picklist",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType= "Select an option");
 
 		Navigator.openURL();
 

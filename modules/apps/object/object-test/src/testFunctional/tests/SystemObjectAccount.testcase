@@ -71,7 +71,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Type");
 
 		CreateObject.saveObject();
 
@@ -530,7 +532,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Description");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Description");
 
 		CreateObject.saveObject();
 
@@ -624,7 +628,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Name");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Name");
 
 		CreateObject.saveObject();
 
@@ -662,7 +668,9 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "Account");
 
-			CreateObject.selectTitleField(fieldLabel = "Name");
+			CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Name");
 
 			CreateObject.saveObject();
 
@@ -752,7 +760,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Type");
 
 		CreateObject.saveObject();
 
@@ -776,7 +786,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+				selectType = "Select an option",
+				fieldLabel = "Type");
 
 		CreateObject.saveObject();
 
