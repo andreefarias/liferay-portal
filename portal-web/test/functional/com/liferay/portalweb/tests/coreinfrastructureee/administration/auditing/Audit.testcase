@@ -734,7 +734,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "My Object Field",
 				fieldName = "myObjectField",
-				fieldType = "Text");
+				idFieldType = "Text",
+				selectType = "Select an option");
 
 			Refresh();
 

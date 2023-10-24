@@ -117,6 +117,8 @@ definition {
 			objectLabel = ${objectLabel},
 			scriptValidation = ${scriptValidation},
 			secretAction = ${secretAction},
+			selectAction = ${selectAction},
+			selectTrigger = ${selectTrigger},
 			thenAction = ${thenAction},
 			urlAction = ${urlAction},
 			whenAction = ${whenAction});
@@ -195,25 +197,25 @@ definition {
 				value1 = ${fieldName});
 		}
 
-		if (isSet(fieldType)) {
-			ObjectField.selectType(fieldType = ${fieldType});
+		if (isSet(idFieldType)) {
+			ObjectField.selectType(
+				idFieldType = ${idFieldType},
+				selectType = ${selectType});
 
-			if (${fieldType} == "Date and Time") {
+			if (${idFieldType} == "DateTime") {
 				Click(
 					key_sorting = ${sorting},
 					locator1 = "ObjectCustomViews#EDIT_SORTING");
 
 				Click(
-					key_fieldType = ${fieldTimeStorage},
-					locator1 = "ObjectField#TYPE_OPTION");
+					key_idFieldType = ${fieldTimeStorage},
+					locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 			}
 
-			if (${fieldType} == "Attachment") {
-				Click(locator1 = "ObjectField#REQUEST_FILES_INPUT");
-
-				Click(
-					key_fieldType = ${fieldAttachment},
-					locator1 = "ObjectField#TYPE_OPTION");
+			if (${idFieldType} == "Attachment") {
+				ObjectField.selectType(
+					idFieldType = ${fieldAttachment},
+					selectType = ${selectType});
 
 				var enableShowFiles = ${enableShowFiles};
 
@@ -224,7 +226,7 @@ definition {
 				}
 			}
 
-			if (${fieldType} == "Aggregation") {
+			if (${idFieldType} == "Aggregation") {
 				Click(locator1 = "ObjectField#LABEL_RELATIONSHIP");
 
 				Click(
@@ -232,12 +234,12 @@ definition {
 					locator1 = "ObjectAdmin#SELECT_DROPDOWN_ITEM_DEFAULT_VALUE");
 
 				Click(
-					key_filterLabel = "Function",
-					locator1 = "ObjectCustomViews#SELECT_FILTER_GENERIC");
+					key_selectType = ${selectType},
+					locator1 = "ObjectField#CLAY_GENERIC_SELECTION");
 
 				Click(
-					key_fieldType = ${function},
-					locator1 = "ObjectField#TYPE_OPTION");
+					key_idFieldType = ${function},
+					locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 
 				if (isSet(field)) {
 					Click(locator1 = "ObjectField#LABEL_FIELD");
@@ -677,7 +679,7 @@ definition {
 
 	macro assertObjectField {
 		var key_fieldLabel = ${fieldLabel};
-		var key_fieldType = ${fieldType};
+		var key_idFieldType = ${idFieldType};
 
 		AssertElementPresent(locator1 = "ObjectAdmin#VIEW_OBJECT_FIELD_LABEL");
 
@@ -1094,6 +1096,14 @@ definition {
 			locator1 = "ObjectAction#TAB_GENERIC");
 
 		if (isSet(whenAction)) {
+			Click(
+				key_selectType = ${selectTrigger},
+				locator1 = "ObjectField#CLAY_GENERIC_SELECTION");
+
+			Click(
+				key_idFieldType = ${whenAction},
+				locator1 = "ObjectField#CLAY_GENERIC_OPTION");
+
 			Click(locator1 = "ObjectAction#SELECT_TRIGGER");
 
 			Click(
@@ -1102,6 +1112,14 @@ definition {
 		}
 
 		if (isSet(thenAction)) {
+			Click(
+				key_selectType = ${selectAction},
+				locator1 = "ObjectField#CLAY_GENERIC_SELECTION");
+
+			Click(
+				key_idFieldType = ${thenAction},
+				locator1 = "ObjectField#CLAY_GENERIC_OPTION");
+
 			Click(locator1 = "ObjectAction#SELECT_ACTION_TYPE");
 
 			Click(

@@ -663,7 +663,9 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "Account");
 
-			CreateObject.selectTitleField(fieldLabel = "Type");
+			CreateObject.selectTitleField(
+				fieldLabel = "Type",
+				selectType = "Select an option");
 
 			CreateObject.saveObject();
 

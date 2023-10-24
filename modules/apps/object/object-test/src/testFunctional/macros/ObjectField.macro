@@ -23,15 +23,17 @@ definition {
 	}
 
 	macro assertOptionAndDescriptionOnRequestFiles {
-		Click(locator1 = "ObjectField#REQUEST_FILES_INPUT");
+		Click(
+			key_selectType = ${selectType},
+			locator1 = "ObjectField#CLAY_GENERIC_SELECTION");
 
 		AssertElementPresent(
-			key_fieldType = ${option},
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_idFieldType = ${option},
+			locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 
 		AssertTextEquals(
-			key_type = ${option},
-			locator1 = "ObjectField#FIELD_TYPE_DESCRIPTION",
+			key_type = ${description},
+			locator1 = "ObjectField#CLAY_FIELD_TYPE_DESCRIPTION",
 			value1 = ${description});
 	}
 
@@ -77,7 +79,7 @@ definition {
 
 		Click(
 			key_fieldType = ${option},
-			locator1 = "ObjectField#TYPE_OPTION");
+			locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 	}
 
 	macro selectPicklist {
@@ -93,11 +95,13 @@ definition {
 	}
 
 	macro selectType {
-		Click(locator1 = "ObjectField#TYPE_FIELD");
+		Click(
+			key_selectType = ${selectType},
+			locator1 = "ObjectField#CLAY_GENERIC_SELECTION");
 
 		Click(
-			key_fieldType = ${fieldType},
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_idFieldType = ${idFieldType},
+			locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 	}
 
 	macro toggleMandatory {

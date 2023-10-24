@@ -41,7 +41,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Custom Date Time",
 				fieldTimeStorage = "Use Input as Entered",
-				fieldType = "Date and Time",
+				idFieldType = "DateTime",
+				selectType = "Select an option",
 				sorting = "Convert to UTC");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject186246");
@@ -77,7 +78,7 @@ definition {
 				fieldBusinessType = "DateTime",
 				fieldLabelName = "Custom Date Time",
 				fieldName = "customDateTime",
-				fieldType = "DateTime",
+				idFieldType = "DateTime",
 				isRequired = "false",
 				objectName = "CustomObject186248",
 				timeStorageOption = "convertToUTC");

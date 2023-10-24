@@ -56,7 +56,7 @@ definition {
 
 		Click(
 			key_fieldType = ${filterType},
-			locator1 = "ObjectField#TYPE_OPTION");
+			locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 
 		if (${filterType} == "Range") {
 			var dateIndex = 1;
@@ -98,7 +98,7 @@ definition {
 
 			Click(
 				key_fieldType = ${filterType},
-				locator1 = "ObjectField#TYPE_OPTION");
+				locator1 = "ObjectField#CLAY_GENERIC_OPTION");
 		}
 
 		if (isSet(filterValue)) {

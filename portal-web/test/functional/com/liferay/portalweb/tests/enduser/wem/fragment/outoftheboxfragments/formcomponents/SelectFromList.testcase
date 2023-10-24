@@ -165,7 +165,9 @@ definition {
 
 				ObjectPortlet.selectCustomObject(label = "Menu List");
 
-				CreateObject.selectTitleField(fieldLabel = "Lunch");
+				CreateObject.selectTitleField(
+					fieldLabel = "Lunch",
+					selectType = "Select an option");
 
 				CreateObject.saveObject();
 			}
@@ -244,7 +246,9 @@ definition {
 
 				ObjectPortlet.selectCustomObject(label = "Account");
 
-				CreateObject.selectTitleField(fieldLabel = "Name");
+				CreateObject.selectTitleField(
+					fieldLabel = "Name",
+					selectType = "Select an option");
 
 				CreateObject.saveObject();
 			}

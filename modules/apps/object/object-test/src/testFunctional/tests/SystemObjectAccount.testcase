@@ -71,7 +71,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+			fieldLabel = "Type",
+			selectType = "Select an option");
 
 		CreateObject.saveObject();
 
@@ -530,7 +532,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Description");
+		CreateObject.selectTitleField(
+			fieldLabel = "Description",
+			selectType = "Select an option");
 
 		CreateObject.saveObject();
 
@@ -578,7 +582,7 @@ definition {
 			ObjectAdmin.goToFieldsDetails(label = ${label});
 
 			AssertElementPresent(
-				locator1 = "ObjectField#TYPE_FIELD",
+				locator1 = "ObjectField#CLAY_GENERIC_SELECTION",
 				value1 = "Text");
 
 			AssertChecked.assertCheckedNotVisible(locator1 = "ObjectField#MANDATORY_TOGGLE");
@@ -624,7 +628,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Name");
+		CreateObject.selectTitleField(
+			fieldLabel = "Name",
+			selectType = "Select an option");
 
 		CreateObject.saveObject();
 
@@ -662,7 +668,9 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "Account");
 
-			CreateObject.selectTitleField(fieldLabel = "Name");
+			CreateObject.selectTitleField(
+				fieldLabel = "Name",
+				selectType = "Select an option");
 
 			CreateObject.saveObject();
 
@@ -752,7 +760,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+			fieldLabel = "Type",
+			selectType = "Select an option");
 
 		CreateObject.saveObject();
 
@@ -776,7 +786,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+			fieldLabel = "Type",
+			selectType = "Select an option");
 
 		CreateObject.saveObject();
 

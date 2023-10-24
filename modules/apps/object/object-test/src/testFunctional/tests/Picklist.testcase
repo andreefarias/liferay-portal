@@ -102,9 +102,10 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "Picklist Test",
-				fieldType = "Picklist",
+				idFieldType = "Picklist",
 				itemName = "Picklist Item Test",
-				markAsState = "true");
+				markAsState = "true",
+				selectType = "Select an option");
 
 			Refresh();
 		}
@@ -254,9 +255,10 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "Picklist Test",
-				fieldType = "Picklist",
+				idFieldType = "Picklist",
 				itemName = "Picklist Item Test 1",
-				markAsState = "true");
+				markAsState = "true",
+				selectType = "Select an option");
 		}
 
 		task ("Publish the Custom Object and assert that is possible to edit state") {
@@ -765,7 +767,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "Picklist Test",
-				fieldType = "Picklist");
+				idFieldType = "Picklist",
+				selectType = "Select an option");
 		}
 
 		task ("Publish the Custom Object") {
@@ -867,7 +870,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Picklist Test",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType = "Select an option");
 
 		Navigator.openURL();
 
@@ -940,7 +944,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Picklist Test",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType = "Select an option");
 
 		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject147729");
 
@@ -1019,7 +1024,9 @@ definition {
 				locator1 = "ObjectField#LABEL_INPUT",
 				value1 = "Lista de itens");
 
-			ObjectField.selectType(fieldType = "Lista de seleção");
+			ObjectField.selectType(
+				idFieldType = "Listadeseleção",
+				selectType = "Select an option");
 
 			ObjectField.selectPicklist(
 				dropdownLabel = "Lista de seleção",
@@ -1081,7 +1088,8 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Picklist Test",
-			fieldType = "Picklist");
+			idFieldType = "Picklist",
+			selectType = "Select an option");
 
 		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject147729");
 

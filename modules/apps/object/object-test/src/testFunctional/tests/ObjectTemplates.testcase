@@ -479,8 +479,9 @@ definition {
 		ObjectAdmin.addObjectFieldViaUI(
 			fieldLabel = "Field Picklist",
 			fieldPicklist = "Custom Picklist",
-			fieldType = "Picklist",
-			isMandatory = "true");
+			idFieldType = "Picklist",
+			isMandatory = "true",
+			selectType = "Select an option");
 
 		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject149243");
 

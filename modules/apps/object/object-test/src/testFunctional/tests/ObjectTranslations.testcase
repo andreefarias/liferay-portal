@@ -96,7 +96,8 @@ definition {
 
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Custom Field",
-				fieldType = "Text");
+				idFieldType = "Text",
+				selectType = "Select an option");
 		}
 
 		task ("When the user changes the default language to English") {
@@ -144,7 +145,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Custom Field",
 				fieldName = "customField",
-				fieldType = "Text");
+				idFieldType = "Text",
+				selectType = "Select an option");
 		}
 
 		task ("Then the field cannot be set as translatable") {

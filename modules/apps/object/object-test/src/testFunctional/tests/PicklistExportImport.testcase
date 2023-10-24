@@ -57,7 +57,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "ImportedPicklist1",
-				fieldType = "Multiselect Picklist");
+				idFieldType = "MultiselectPicklist",
+				selectType = "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject175680");
 
@@ -100,7 +101,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "ImportedPicklist175691",
-				fieldType = "Picklist");
+				idFieldType = "Picklist",
+				selectType = "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "ImportedSimpleObject175691");
 		}
@@ -142,7 +144,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "ImportedPicklist175679",
-				fieldType = "Picklist");
+				idFieldType = "Picklist",
+				selectType = "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject175679");
 		}
@@ -184,9 +187,10 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "ImportedPicklist175681",
-				fieldType = "Picklist",
+				idFieldType = "Picklist",
 				itemName = "Picklist Item 1",
-				markAsState = "true");
+				markAsState = "true",
+				selectType = "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject175681");
 		}
@@ -228,7 +232,8 @@ definition {
 			ObjectAdmin.addObjectFieldViaUI(
 				fieldLabel = "Field Picklist",
 				fieldPicklist = "ImportedPicklist175689",
-				fieldType = "Picklist");
+				idFieldType = "Picklist",
+				selectType = "Select an option");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject175689");
 		}

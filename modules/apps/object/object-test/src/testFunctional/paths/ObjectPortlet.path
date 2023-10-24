@@ -62,7 +62,7 @@
 	</tr>
 	<tr>
 		<td>ENTRY_VALUE</td>
-		<td>//div[contains(@class,'dnd-tbody')]//*[contains(text(),'${key_entry}')]</td>
+		<td>//div[contains(@class,'dnd-tbody')]//*[contains(@href,'${key_entry}') or contains(text(), '${key_entry}')]</td>
 		<td></td>
 	</tr>
 	<tr>

@@ -48,7 +48,9 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "Commerce Product Group");
 
-			CreateObject.selectTitleField(fieldLabel = "Title");
+			CreateObject.selectTitleField(
+				fieldLabel = "Title",
+				selectType = "Select an option");
 
 			PortletEntry.save();
 		}
@@ -126,7 +128,9 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "Commerce Product");
 
-			CreateObject.selectTitleField(fieldLabel = "Name");
+			CreateObject.selectTitleField(
+				fieldLabel = "Name",
+				selectType = "Select an option");
 
 			CreateObject.saveObject();
 		}
