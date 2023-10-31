@@ -129,7 +129,7 @@
 	</tr>
 	<tr>
 		<td>TYPE_FIELD_DISABLED</td>
-		<td>//input[@placeholder='Choose an Option' and @disabled]</td>
+		<td>//div[contains(@class,'form-group') and contains(label,'Type') and //@disabled]</td>
 		<td></td>
 	</tr>
 	<tr>

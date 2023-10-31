@@ -71,7 +71,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+			defaultOption = "Name",
+			fieldLabel = "Type");
 
 		CreateObject.saveObject();
 
@@ -530,7 +532,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Description");
+		CreateObject.selectTitleField(
+			defaultOption = "Name",
+			fieldLabel = "Description");
 
 		CreateObject.saveObject();
 
@@ -578,8 +582,9 @@ definition {
 			ObjectAdmin.goToFieldsDetails(label = ${label});
 
 			AssertElementPresent(
-				locator1 = "ObjectField#TYPE_FIELD",
-				value1 = "Text");
+				key_defaultOption = "Text",
+				key_labelName = "Type",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			AssertChecked.assertCheckedNotVisible(locator1 = "ObjectField#MANDATORY_TOGGLE");
 
@@ -620,14 +625,6 @@ definition {
 
 		ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject153527");
 
-		ObjectAdmin.openObjectAdmin();
-
-		ObjectPortlet.selectSystemObject(label = "Account");
-
-		CreateObject.selectTitleField(fieldLabel = "Name");
-
-		CreateObject.saveObject();
-
 		ObjectAdmin.goToCustomObject(objectName = "CustomObject153527");
 
 		LexiconEntry.gotoAdd();
@@ -661,10 +658,6 @@ definition {
 			ObjectAdmin.openObjectAdmin();
 
 			ObjectPortlet.selectSystemObject(label = "Account");
-
-			CreateObject.selectTitleField(fieldLabel = "Name");
-
-			CreateObject.saveObject();
 
 			ObjectAdmin.gotoRelationshipsTab();
 
@@ -752,7 +745,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+			defaultOption = "Name",
+			fieldLabel = "Type");
 
 		CreateObject.saveObject();
 
@@ -776,7 +771,9 @@ definition {
 
 		ObjectPortlet.selectSystemObject(label = "Account");
 
-		CreateObject.selectTitleField(fieldLabel = "Type");
+		CreateObject.selectTitleField(
+			defaultOption = "Name",
+			fieldLabel = "Type");
 
 		CreateObject.saveObject();
 
@@ -785,8 +782,9 @@ definition {
 		ObjectPortlet.selectSystemObject(label = "Account");
 
 		AssertElementPresent(
-			locator1 = "CreateObject#TITLE_FIELD",
-			value1 = "Type");
+			key_defaultOption = "Type",
+			key_labelName = "Entry Title Field",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 	}
 
 	@description = "LPS-151765 - Verify if the Widget option is disable on System Object Account"

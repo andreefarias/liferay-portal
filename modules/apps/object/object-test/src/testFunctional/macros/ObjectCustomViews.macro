@@ -32,11 +32,14 @@ definition {
 			key_columnOption = ${columnOption},
 			locator1 = "ObjectCustomViews#SELECT_AUTO_COMPLETE_OPTION");
 
-		Click(locator1 = "ObjectCustomViews#SELECT_SORTING_ON_DEFAULT_SORT");
+		Click(
+			key_defaultOption = "Ascending",
+			key_labelName = "Sorting",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_sortOption = ${sortOption},
-			locator1 = "ObjectCustomViews#SORT_OPTION");
+			key_optionName = ${sortOption},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 		Click(
 			key_tab = "Save",
@@ -54,12 +57,13 @@ definition {
 			locator1 = "ObjectCustomViews#FIELD_VIEW_FILTER_DROPDOWN_OPTION");
 
 		Click(
-			key_filterLabel = "Filter Type",
-			locator1 = "ObjectCustomViews#SELECT_FILTER_GENERIC");
+			key_defaultOption = "Select an option",
+			key_labelName = "Filter Type",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_fieldType = ${filterType},
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_optionName = ${filterType},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 		if (${filterType} == "Range") {
 			var dateIndex = 1;
@@ -98,18 +102,24 @@ definition {
 
 		if (isSet(filterType)) {
 			Click(
-				key_filterLabel = "Filter Type",
-				locator1 = "ObjectCustomViews#SELECT_FILTER_GENERIC");
+				key_defaultOption = "Select an option",
+				key_labelName = "Filter Type",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			Click(
-				key_fieldType = ${filterType},
-				locator1 = "ObjectField#TYPE_OPTION");
+				key_optionName = ${filterType},
+				locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 		}
 
 		if (isSet(filterValue)) {
 			Click(
 				key_filterLabel = "Value",
 				locator1 = "ObjectCustomViews#SELECT_FILTER_GENERIC");
+
+			Click(
+				key_defaultOption = "Select an option",
+				key_labelName = "Value",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			for (var filterValueList : list ${filterValue}) {
 				Click.clickAtNotVisible(

@@ -25,11 +25,14 @@ definition {
 
 	@summary = "Default summary"
 	macro assertOptionAndDescriptionOnRequestFiles(description = null,option = null) {
-		Click(locator1 = "ObjectField#REQUEST_FILES_INPUT");
+		Click(
+			key_defaultOption = "Select an option",
+			key_labelName = "Request Files",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		AssertElementPresent(
-			key_fieldType = ${option},
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_optionName = ${option},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 		AssertTextEquals(
 			key_type = ${option},
@@ -59,12 +62,13 @@ definition {
 		ObjectField.typeLabel(content = ${newContent});
 
 		Click(
-			key_filterLabel = "Output",
-			locator1 = "ObjectCustomViews#SELECT_FILTER_GENERIC");
+			key_defaultOption = "Decimal",
+			key_labelName = "Output",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_dropdownItem = ${newTypeFormula},
-			locator1 = "ObjectField#SELECT_FORMULA_FIELD_OPTION");
+			key_optionName = ${newTypeFormula},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 		Type(
 			key_text = "Formula Builder",
@@ -81,11 +85,14 @@ definition {
 
 	@summary = "Default summary"
 	macro selectOptionOnRequestFiles(option = null) {
-		Click(locator1 = "ObjectField#REQUEST_FILES_INPUT");
+		Click(
+			key_defaultOption = "Select an option",
+			key_labelName = "Request Files",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_fieldType = ${option},
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_optionName = ${option},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 	}
 
 	@summary = "Default summary"
@@ -103,11 +110,14 @@ definition {
 
 	@summary = "Default summary"
 	macro selectType(fieldType = null) {
-		Click(locator1 = "ObjectField#TYPE_FIELD");
+		Click(
+			key_defaultOption = "Select an option",
+			key_labelName = "Type",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_fieldType = ${fieldType},
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_optionName = ${fieldType},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 	}
 
 	@summary = "Default summary"

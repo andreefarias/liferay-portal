@@ -296,12 +296,15 @@ definition {
 	}
 
 	@summary = "Default summary"
-	macro selectTitleField(fieldLabel = null) {
-		Click(locator1 = "CreateObject#TITLE_FIELD");
+	macro selectTitleField(defaultOption = null,fieldLabel = null) {
+		Click(
+			key_defaultOption = ${defaultOption},
+			key_labelName = "Entry Title Field",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_menuItem = ${fieldLabel},
-			locator1 = "MenuItem#ANY_MENU_ITEM");
+			key_optionName = ${fieldLabel},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 	}
 
 	@summary = "Default summary"

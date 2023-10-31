@@ -20,11 +20,14 @@ definition {
 			locator1 = "ObjectCustomValidation#LABEL_ON_ADD_VALIDATION",
 			value1 = ${validationName});
 
-		Click(locator1 = "ObjectCustomValidation#SELECT_TYPE_VALIDATION");
+		Click(
+			key_defaultOption = "",
+			key_labelName = "Type",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		Click(
-			key_validationType = ${validationType},
-			locator1 = "ObjectCustomValidation#CHOOSE_OPTION_TYPE_VALIDATION");
+			key_optionName = ${validationType},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 		Button.clickSave();
 	}

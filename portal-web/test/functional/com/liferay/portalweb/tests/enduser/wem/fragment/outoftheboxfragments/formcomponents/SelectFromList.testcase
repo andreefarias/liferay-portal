@@ -165,7 +165,9 @@ definition {
 
 				ObjectPortlet.selectCustomObject(label = "Menu List");
 
-				CreateObject.selectTitleField(fieldLabel = "Lunch");
+				CreateObject.selectTitleField(
+					defaultOption = "ID",
+					fieldLabel = "Lunch");
 
 				CreateObject.saveObject();
 			}
@@ -237,16 +239,6 @@ definition {
 					relationshipLabel = "Account Name",
 					relationshipName = "accountName",
 					relationshipType = "oneToMany");
-			}
-
-			task ("Select title field on Account object") {
-				ObjectAdmin.openObjectAdmin();
-
-				ObjectPortlet.selectCustomObject(label = "Account");
-
-				CreateObject.selectTitleField(fieldLabel = "Name");
-
-				CreateObject.saveObject();
 			}
 
 			task ("Add four accounts") {

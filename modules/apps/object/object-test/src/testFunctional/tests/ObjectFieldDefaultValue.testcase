@@ -87,11 +87,14 @@ definition {
 				key_optionDefaulValue = "Input as Value",
 				locator1 = "ObjectAdmin#PICKLIST_INPUT_AS_VALUE_OR_EXPRESSION");
 
-			Click(locator1 = "ObjectAdmin#DROPDOWN_DEFAULT_VALUE");
+			Click(
+				key_defaultOption = "Choose an Option",
+				key_labelName = "Default Value",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			Click(
-				key_dropdownItem = "Item Test 1",
-				locator1 = "ObjectAdmin#SELECT_DROPDOWN_ITEM_DEFAULT_VALUE");
+				key_optionName = "Item Test 1",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 			Button.clickSave();
 		}
@@ -176,11 +179,14 @@ definition {
 				key_optionDefaulValue = "Input as Value",
 				locator1 = "ObjectAdmin#PICKLIST_INPUT_AS_VALUE_OR_EXPRESSION");
 
-			Click(locator1 = "ObjectAdmin#DROPDOWN_DEFAULT_VALUE");
+			Click(
+				key_defaultOption = "Choose an Option",
+				key_labelName = "Default Value",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			Click(
-				key_dropdownItem = "Item Test 1",
-				locator1 = "ObjectAdmin#SELECT_DROPDOWN_ITEM_DEFAULT_VALUE");
+				key_optionName = "Item Test 1",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 			Button.clickSave();
 		}
@@ -211,11 +217,14 @@ definition {
 				key_optionDefaulValue = "Input as Value",
 				locator1 = "ObjectAdmin#PICKLIST_INPUT_AS_VALUE_OR_EXPRESSION");
 
-			Click(locator1 = "ObjectAdmin#DROPDOWN_DEFAULT_VALUE");
+			Click(
+				key_defaultOption = "Choose an Option",
+				key_labelName = "Default Value",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			Click(
-				key_dropdownItem = "Item Test 2",
-				locator1 = "ObjectAdmin#SELECT_DROPDOWN_ITEM_DEFAULT_VALUE");
+				key_optionName = "Item Test 2",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 			Button.clickSave();
 		}
@@ -393,11 +402,14 @@ definition {
 				key_toggleSwitchLabel = "Use Default Value",
 				locator1 = "ToggleSwitch#ANY_TOGGLE_SWITCH");
 
-			Click(locator1 = "ObjectAdmin#DROPDOWN_DEFAULT_VALUE");
+			Click(
+				key_defaultOption = "Choose an Option",
+				key_labelName = "Default Value",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			Click(
-				key_dropdownItem = "Picklist Item 1",
-				locator1 = "ObjectAdmin#SELECT_DROPDOWN_ITEM_DEFAULT_VALUE");
+				key_optionName = "Picklist Item 1",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 			PortletEntry.save();
 		}

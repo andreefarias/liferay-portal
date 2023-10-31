@@ -1124,12 +1124,13 @@ definition {
 				locator1 = "ObjectAdmin#SELECT_DROPDOWN_ITEM_DEFAULT_VALUE");
 
 			Click(
-				key_filterLabel = "Function",
-				locator1 = "ObjectCustomViews#SELECT_FILTER_GENERIC");
+				key_defaultOption = "Max",
+				key_labelName = "Function",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			Click(
-				key_fieldType = "Min",
-				locator1 = "ObjectField#TYPE_OPTION");
+				key_optionName = "Min",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 			Click(locator1 = "ObjectField#LABEL_FIELD");
 
@@ -2705,13 +2706,16 @@ definition {
 		}
 
 		task ("Select title field and assert it") {
-			CreateObject.selectTitleField(fieldLabel = "External Reference Code");
+			CreateObject.selectTitleField(
+				defaultOption = "ID",
+				fieldLabel = "External Reference Code");
 
 			CreateObject.saveObject();
 
 			AssertElementPresent(
-				locator1 = "CreateObject#TITLE_FIELD",
-				value1 = "External Reference Code");
+				key_defaultOption = "External Reference Code",
+				key_labelName = "Entry Title Field",
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject162184");
 		}
@@ -2942,7 +2946,9 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "User");
 
-			CreateObject.selectTitleField(fieldLabel = "ID");
+			CreateObject.selectTitleField(
+				defaultOption = "First Name",
+				fieldLabel = "ID");
 
 			CreateObject.saveObject();
 		}
@@ -3516,11 +3522,14 @@ definition {
 
 		LexiconEntry.gotoAdd();
 
-		Click(locator1 = "ObjectField#TYPE_FIELD");
+		Click(
+			key_defaultOption = "Select an option",
+			key_labelName = "Type",
+			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
 		AssertElementPresent(
-			key_fieldType = "Attachment",
-			locator1 = "ObjectField#TYPE_OPTION");
+			key_optionName = ${fieldType},
+			locator1 = "ObjectAdmin#CLAY_GENERIC_DROPDOWN_ITEM");
 
 		AssertTextEquals(
 			key_type = "Attachment",
@@ -3550,7 +3559,7 @@ definition {
 
 		ObjectField.assertOptionAndDescriptionOnRequestFiles(
 			description = "Files can be stored in an object entry or in a specific folder in Documents and Media.",
-			option = "Upload Directly from the User's Computer");
+			option = "Upload Directly from the User");
 	}
 
 	@description = "LPS-146523 - Verify if there's an option on Request Files: Upload and Select from Documents and Media Item Selector"
@@ -3635,7 +3644,7 @@ definition {
 
 		ObjectField.selectType(fieldType = "Attachment");
 
-		ObjectField.selectOptionOnRequestFiles(option = "Upload Directly from the User's Computer");
+		ObjectField.selectOptionOnRequestFiles(option = "Upload Directly from the User");
 
 		Uncheck.uncheckNotVisible(
 			key_toggleSwitchLabel = "Show Files in Documents and Media",
