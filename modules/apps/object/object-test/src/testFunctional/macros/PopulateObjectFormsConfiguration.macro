@@ -22,7 +22,6 @@ definition {
 		Click(locator1 = "PopulateObjectFormsConfiguration#ADVANCED_TAB");
 
 		ObjectAdmin.selectDropdownItem(
-			currentOption = "Choose an Option",
 			labelName = "Object Field",
 			optionName = ${fieldLabelName});
 
@@ -101,7 +100,6 @@ definition {
 		Click(locator1 = "PopulateObjectFormsConfiguration#ADVANCED_TAB");
 
 		Click(
-			key_currentOption = "Choose an Option",
 			key_labelName = "Object Field",
 			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 

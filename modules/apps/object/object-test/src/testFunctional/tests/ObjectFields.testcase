@@ -765,7 +765,6 @@ definition {
 			ObjectAdmin.goToDetailsTab();
 
 			ObjectAdmin.selectDropdownItem(
-				currentOption = "Select an option",
 				labelName = "Panel Link",
 				optionName = "Object");
 
@@ -817,7 +816,6 @@ definition {
 				value1 = "01/01/2022");
 
 			ObjectAdmin.selectDropdownItem(
-				currentOption = "Choose an Option",
 				labelName = "Custom Picklist",
 				optionName = "Picklist Item Test 1");
 
@@ -1122,12 +1120,10 @@ definition {
 			AssertElementPresent(locator1 = "ObjectField#TYPE_FIELD_DISABLED");
 
 			ObjectAdmin.selectDropdownItem(
-				currentOption = "Select an option",
 				labelName = "Relationship",
 				optionName = "RelationshipCommerce");
 
 			ObjectAdmin.selectDropdownItem(
-				currentOption = "Max",
 				labelName = "Function",
 				optionName = "Min");
 
@@ -2705,16 +2701,14 @@ definition {
 		}
 
 		task ("Select title field and assert it") {
-			CreateObject.selectTitleField(
-				currentOption = "ID",
-				fieldLabel = "External Reference Code");
+			CreateObject.selectTitleField(fieldLabel = "External Reference Code");
 
 			CreateObject.saveObject();
 
-			AssertElementPresent(
-				key_currentOption = "External Reference Code",
+			AssertTextEquals(
 				key_labelName = "Entry Title Field",
-				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
+				locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON",
+				value1 = "External Reference Code");
 
 			ObjectAdmin.publishObjectViaAPI(objectName = "CustomObject162184");
 		}
@@ -2945,9 +2939,7 @@ definition {
 
 			ObjectPortlet.selectSystemObject(label = "User");
 
-			CreateObject.selectTitleField(
-				currentOption = "First Name",
-				fieldLabel = "ID");
+			CreateObject.selectTitleField(fieldLabel = "ID");
 
 			CreateObject.saveObject();
 		}
@@ -3484,12 +3476,10 @@ definition {
 		LexiconEntry.gotoAdd();
 
 		ObjectAdmin.selectDropdownItem(
-			currentOption = "Select an option",
 			labelName = "Type",
 			optionName = "Picklist");
 
 		Click(
-			key_currentOption = "Select an option",
 			key_labelName = "Picklist",
 			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
@@ -3737,7 +3727,6 @@ definition {
 		LexiconEntry.gotoAdd();
 
 		Click(
-			key_currentOption = "Select an option",
 			key_labelName = "Type",
 			locator1 = "ObjectAdmin#CLAY_GENERIC_BUTTON");
 
