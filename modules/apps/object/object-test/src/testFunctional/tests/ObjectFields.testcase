@@ -1686,7 +1686,7 @@ definition {
 			for (var metadata : list ${listMetaData}) {
 				AssertVisible(
 					key_label = ${metadata},
-					locator1 = "ObjectAdmin#SELECT_OBJECT_FIELD");
+					locator1 = "ObjectAdmin#SELECT_OBJECT_LABEL");
 			}
 		}
 	}
