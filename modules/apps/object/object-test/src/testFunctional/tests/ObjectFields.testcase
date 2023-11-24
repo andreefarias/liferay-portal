@@ -4353,6 +4353,8 @@ definition {
 	@description = "LPS-146889 - Verify the user can 'Set the Maximum Number of Characters' until 65000"
 	@priority = 4
 	test MaximumCharactersLongTextField {
+		property portal.acceptance = "singleTest";
+
 		task ("Given an object definition with a long text field") {
 			ObjectAdmin.addObjectViaAPI(
 				labelName = "Custom Object 151572",
