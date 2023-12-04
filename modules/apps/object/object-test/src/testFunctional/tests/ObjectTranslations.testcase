@@ -156,4 +156,62 @@ definition {
 		}
 	}
 
+	@description = "LPS-178665 - Verify the user can update title field after the change the default language"
+	@priority = 3
+	test CanUpdateTitleField {
+		task ("Given a person account") {
+			JSONAccountEntry.addAccountEntry(
+				accountEntryName = "John",
+				accountEntryType = "Person");
+		}
+
+		task ("and Given the object Account related with a custom object definition") {
+			ObjectAdmin.addObjectViaAPI(
+				labelName = "Airport",
+				objectName = "Airport",
+				pluralLabelName = "Airport");
+
+			ObjectAdmin.addObjectRelationshipViaAPI(
+				objectName_1 = "AccountEntry",
+				objectName_2 = "Airport",
+				relationshipLabel = "Suitcases",
+				relationshipName = "suitcases",
+				relationshipType = "oneToMany");
+
+			ObjectAdmin.publishObjectViaAPI(objectName = "Airport");
+		}
+
+		task ("and Given an instance settings with default language Arabic") {
+			PortalSettings.openToConfigInInstanceSettings(portletKey = "language");
+
+			PortalSettings.configureCurrentLanguagesCP(defaultPortalLanguage = "Arabic (Saudi Arabia)");
+		}
+
+		task ("and Given the object Account with title field as type") {
+			ObjectAdmin.openObjectAdmin();
+
+			ObjectPortlet.selectSystemObject(label = "Account");
+
+			CreateObject.selectTitleField(fieldLabel = "Type");
+
+			CreateObject.saveObject();
+		}
+
+		task ("When creating an object entry") {
+			ObjectAdmin.goToCustomObject(objectName = "Airport");
+
+			LexiconEntry.gotoAdd();
+
+			ObjectPortlet.chooseEntryOnRelationshipField(entryOption = "person");
+
+			PortletEntry.save();
+
+			ObjectAdmin.goToCustomObject(objectName = "Airport");
+		}
+
+		task ("Then is created the object entry with person type") {
+			ObjectPortlet.viewEntry(entry = "person");
+		}
+	}
+
 }
