@@ -132,6 +132,46 @@ definition {
 		}
 	}
 
+	@description = "LPS-185674 - Verify the user can rename the object definition name in model builder view"
+	@priority = 5
+	test CanRenameObjectDefinition {
+		task ("Given two related object definitions in model builder view") {
+			for (var object : list "Bike,Wheel") {
+				ObjectAdmin.addObjectViaAPI(
+					labelName = ${object},
+					objectName = ${object},
+					pluralLabelName = ${object});
+			}
+
+			ObjectAdmin.addObjectRelationshipViaAPI(
+				objectName_1 = "Bike",
+				objectName_2 = "Wheel",
+				relationshipLabel = "Color",
+				relationshipName = "color",
+				relationshipType = "oneToMany");
+
+			ObjectModelBuilder.openObjectFolderInModelBuilder();
+		}
+
+		task ("When the user updates one object name") {
+			ObjectModelBuilder.selectObjectNode(objectLabel = "Bike");
+
+			ObjectField.typeName(fieldName = "MountainBike");
+
+			ObjectModelBuilder.selectObjectNode(objectLabel = "Bike");
+		}
+
+		task ("Then the object name is updated and the relationship persist") {
+			AssertTextEquals(
+				locator1 = "ObjectField#NAME_FIELD",
+				value1 = "MountainBike");
+
+			AssertElementPresent(
+				key_connectorLabel = "Color",
+				locator1 = "ProcessBuilderKaleoDesignerReact#DIAGRAM_CONNECTOR_LABEL");
+		}
+	}
+
 	@description = "LPS-185674 - Verify the user is able to search for a specific object definition in model builder view"
 	@priority = 4
 	test CanSearchForObjectDefinition {
